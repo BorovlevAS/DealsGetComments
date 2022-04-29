@@ -56,7 +56,7 @@ def get_comments(deals):
         i += 1
 
     for batch in packages:
-        req = requests.post(f'{B24_URI}/batch', json = batch)
+        req = requests.post(f'{B24_URI}/batch', json=batch)
 
         if req.status_code != 200:
             print('Error accessing to B24!')
@@ -67,7 +67,7 @@ def get_comments(deals):
         res_comments = resp_json['result']['result']
 
         if len(res_errors) > 0:
-            for key,val in res_errors.items():
+            for key, val in res_errors.items():
                 print(key, ':', val['error_description'])
 
         if len(res_comments) > 0:
@@ -80,6 +80,7 @@ def get_comments(deals):
                             deals_with_files.update({file: {'deal_id': deal_id, 'comment_id': comment_line['ID']}})
 
     return [deals, deals_with_files]
+
 
 def get_files(deals, deals_with_files):
 
@@ -100,7 +101,7 @@ def get_files(deals, deals_with_files):
         i += 1
 
     for batch in packages:
-        req = requests.post(f'{B24_URI}/batch', json = batch)
+        req = requests.post(f'{B24_URI}/batch', json=batch)
 
         if req.status_code != 200:
             print('Error accessing to B24!')
@@ -111,7 +112,7 @@ def get_files(deals, deals_with_files):
         res_files = resp_json['result']['result']
 
         if len(res_errors) > 0:
-            for key,val in res_errors.items():
+            for key, val in res_errors.items():
                 print(key, ':', val['error_description'])
 
         if len(res_files) > 0:
@@ -124,10 +125,12 @@ def get_files(deals, deals_with_files):
 
     return deals
 
+
 def save_result(deals):
 
     with open(RESULT_FILE, 'w') as json_file:
         json.dump(deals, json_file, ensure_ascii=False, indent=4, sort_keys=True)
+
 
 def main():
 
