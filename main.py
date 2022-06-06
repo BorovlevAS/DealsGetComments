@@ -128,7 +128,7 @@ def get_files(deals, deals_with_files):
 
 def save_result(deals):
 
-    with open(RESULT_FILE, 'w') as json_file:
+    with open(RESULT_FILE, 'w', encoding=CHARSET) as json_file:
         json.dump(deals, json_file, ensure_ascii=False, indent=4, sort_keys=True)
 
 
